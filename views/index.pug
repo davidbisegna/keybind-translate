@@ -1,0 +1,9 @@
+extends layouts/base
+block bonus_headers
+    script(src="./public/components/App.js")
+    link(href="./public/style/index.css" rel="stylesheet")
+block body
+    div(id="app")
+        test-button-component
+    script.
+        var app = new Vue({ el: '#app' })
