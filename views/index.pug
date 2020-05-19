@@ -1,9 +1,11 @@
 extends layouts/base
 block bonus_headers
     script(src="./public/components/App.js")
+    script(src="./public/components/shortcut-input.js")
     link(href="./public/dist/index.css" rel="stylesheet")
 block body
     div(id="app")
-        test-button-component
+        shortcut-input-component
     script.
         var app = new Vue({ el: '#app' })
+        window.mdc.autoInit();
