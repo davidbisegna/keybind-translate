@@ -1,0 +1,19 @@
+@use '@material/button/mdc-button';
+@use '@material/button';
+
+$blueButton: #039be5;
+
+#app{
+	text-align: center;
+	top: 50%;
+	left: 50%;
+	height:18em;
+}
+
+.foo-button{
+	@include button.container-fill-color($blueButton);
+	@include button.ink-color(white);
+	position: absolute;
+	margin-top: 20%;
+	margin-right: 20%
+}
