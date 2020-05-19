@@ -5,7 +5,7 @@ Vue.component('shortcut-input-component', {
 		}
 	},
   	template: 	`<label class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField" id="shortcut-input">
-				  <input type="text" class="mdc-text-field__input" aria-labelledby="shortcut-input-label-id">
+				  <input type="text" v-on:keydown.alt="checkAltShortcut" v-on:keydown.ctrl="checkCtrlShortcut" class="mdc-text-field__input" aria-labelledby="shortcut-input-label-id">
 				  <span class="mdc-notched-outline">
 				    <span class="mdc-notched-outline__leading"></span>
 				    <span class="mdc-notched-outline__notch">
@@ -13,5 +13,32 @@ Vue.component('shortcut-input-component', {
 				    </span>
 				    <span class="mdc-notched-outline__trailing"></span>
 				  </span>
-				</label>`
+				</label>`,
+	methods: {
+		checkCtrlAltShortcut(event) {
+			if(event.key != "Control" && event.key != "Alt")
+			console.log("Got : CTRL+ALT+" + event.key.toUpperCase())
+		},
+		checkCtrlShortcut(event) {
+			event.preventDefault();
+      		event.stopPropagation();
+			if(event.ctrlKey && event.key != "Control"){
+				if(event.altKey){
+					this.checkCtrlAltShortcut(event)
+				} else {
+					console.log("Got : CTRL+" + event.key.toUpperCase())
+				}
+			}
+		},
+		checkAltShortcut(event) {
+			event.preventDefault();
+      		event.stopPropagation();
+			if(event.altKey && event.key != "Alt"){
+				if(event.ctrlKey){
+				} else {
+					console.log("Got : ALT+" + event.key.toUpperCase())
+				}
+			}
+		}
+	}
 })
